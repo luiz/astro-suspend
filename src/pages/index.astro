@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import Suspend from '../components/Suspend.astro';
 import Dog from '../components/Dog.astro';
+import DogLoading from '../components/DogLoading.astro';
 
 function fetchDog() {
 	return fetch('http://localhost:3000/dog')
@@ -49,6 +50,7 @@ const dog = fetchDog();
 		</ul>
 		<Suspend>
 			<Dog dog={dog} />
+			<DogLoading slot="fallback" />
 		</Suspend>
 	</main>
 </Layout>

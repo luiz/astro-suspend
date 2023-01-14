@@ -1,9 +1,16 @@
 ---
 import { v4 as uuidv4 } from 'uuid';
 import { registerSuspend } from '../lib/suspendRegister';
-const { promise } = Astro.props;
 const uuid = uuidv4();
 registerSuspend(uuid, Astro.slots.render('default'));
 ---
 
-<suspend-part id={uuid} />
+<suspend-part id={uuid}>
+    <slot name="fallback" />
+</suspend-part>
+
+<style>
+    suspend-part {
+        display: contents;
+    }
+</style>

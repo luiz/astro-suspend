@@ -1,0 +1,23 @@
+<div>
+    <p>Loading...</p>
+</div>
+
+<style>
+    div {
+        text-align: center;
+        padding: 3rem;
+    }
+
+    div::before {
+        content: '🐶';
+        display: inline-block;
+        font-size: 3rem;
+        animation: rotate 2s infinite linear;
+    }
+
+    @keyframes rotate {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
