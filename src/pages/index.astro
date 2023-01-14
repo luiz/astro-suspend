@@ -4,8 +4,16 @@ import Card from '../components/Card.astro';
 import Suspend from '../components/Suspend.astro';
 import Dog from '../components/Dog.astro';
 
-const dog = fetch('https://dog.ceo/api/breeds/image/random')
-	.then(response => response.json());
+function fetchDog() {
+	return fetch('http://localhost:3000/dog')
+		.then(response => response.json())
+		.catch((e) => {
+			console.error(e);
+			return { message: ''}
+		});
+}
+
+const dog = fetchDog();
 ---
 
 <Layout title="Welcome to Astro.">

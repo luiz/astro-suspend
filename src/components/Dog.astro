@@ -1,20 +1,44 @@
 ---
+interface Props {
+    dog: Promise<DogData>;
+}
 import delay from "../lib/delay";
 
 const { dog } = Astro.props;
-const { message: image } = await dog;
-await delay(5000);
+const { message } = await dog;
+let image;
+
+if (message.startsWith('http')) {
+    image = message;
+}
+
+await delay(4000);
 ---
 
-<figure>
-    <img src={image} alt="Random dog">
-    <figcaption>A random dog to cheer you up</figcaption>
-</figure>
+{image ?
+    <figure>
+        <img src={image} alt="Random dog">
+        <figcaption>A random dog to cheer you up</figcaption>
+        <script is:inline>
+            alert('Woof!');
+        </script>
+    </figure>
+    :
+    <div class='fail'>
+        <p>Sorry</p>
+        <p>Could only find this dog: 🐕</p>
+    </div>
+}
+
 <style>
     img {
         max-width: 100%;
     }
+    .fail {
+        text-align: center;
+        padding: 2rem;
+    }
+    .fail p:first-child {
+        font-size: 2rem;
+    }
 </style>
-<script is:inline>
-    alert('Woof!');
-</script>
