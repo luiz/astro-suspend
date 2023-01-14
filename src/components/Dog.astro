@@ -1,0 +1,20 @@
+---
+import delay from "../lib/delay";
+
+const { dog } = Astro.props;
+const { message: image } = await dog;
+await delay(5000);
+---
+
+<figure>
+    <img src={image} alt="Random dog">
+    <figcaption>A random dog to cheer you up</figcaption>
+</figure>
+<style>
+    img {
+        max-width: 100%;
+    }
+</style>
+<script is:inline>
+    alert('Woof!');
+</script>
